@@ -18,8 +18,6 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 plugins {
   alias(libs.plugins.android.application)
-  // Note: set apply to true to enable google-services (requires google-services.json).
-  alias(libs.plugins.google.services) apply false
   alias(libs.plugins.kotlin.compose)
   alias(libs.plugins.kotlin.serialization)
   alias(libs.plugins.protobuf)
@@ -33,14 +31,13 @@ android {
   compileSdk { this.version = release(37) { minorApiLevel = 0 } }
 
   defaultConfig {
-    applicationId = "com.google.aiedge.gallery"
+    applicationId = "com.yoyote.myai"
     minSdk = 31
     targetSdk = 37
     versionCode = 44
     versionName = "1.0.20"
 
     // Needed for HuggingFace auth workflows.
-    // Use the scheme of the "Redirect URLs" in HuggingFace app.
     manifestPlaceholders["appAuthRedirectScheme"] =
         "REPLACE_WITH_YOUR_REDIRECT_SCHEME_IN_HUGGINGFACE_APP"
     manifestPlaceholders["applicationName"] = "com.google.ai.edge.gallery.GalleryApplication"
@@ -111,9 +108,10 @@ dependencies {
   implementation(libs.hilt.android)
   implementation(libs.hilt.navigation.compose)
   implementation(libs.play.services.oss.licenses)
-  implementation(platform(libs.firebase.bom))
-  implementation(libs.firebase.analytics)
-  implementation(libs.firebase.messaging)
+  // Firebase retiré pour dé-googliser l'application
+  // implementation(platform(libs.firebase.bom))
+  // implementation(libs.firebase.analytics)
+  // implementation(libs.firebase.messaging)
   implementation(libs.androidx.exifinterface)
   implementation(libs.moshi.kotlin)
   ksp(libs.hilt.android.compiler)
